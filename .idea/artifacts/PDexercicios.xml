@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="PDexercicios">
+    <output-path>$PROJECT_DIR$/out/artifacts/PDexercicios</output-path>
+    <root id="root">
+      <element id="archive" name="PDexercicios.jar">
+        <element id="module-output" name="JAVA-notes" />
+      </element>
+    </root>
+  </artifact>
+</component>
