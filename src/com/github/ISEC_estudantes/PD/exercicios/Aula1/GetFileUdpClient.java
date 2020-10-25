@@ -1,3 +1,5 @@
+package com.github.ISEC_estudantes.PD.exercicios.Aula1;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -120,7 +122,9 @@ public class GetFileUdpClient {
             if(localFileOutputStream != null){
                 try{
                     localFileOutputStream.close();
-                }catch(IOException e){}
+                }catch(IOException e) {
+                    e.printStackTrace();
+                }
             }
             
         }               

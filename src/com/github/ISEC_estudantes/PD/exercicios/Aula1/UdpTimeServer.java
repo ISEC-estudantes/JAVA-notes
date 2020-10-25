@@ -5,14 +5,15 @@ import java.net.DatagramSocket;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static com.github.ISEC_estudantes.PD.exercicios.Aula1.UdpTimeGlobals.MAX_SIZE;
-import static com.github.ISEC_estudantes.PD.exercicios.Aula1.UdpTimeGlobals.TIME_REQUEST;
 
 public class UdpTimeServer {
 
+    public static final int MAX_SIZE = 256;
+    public static final String TIME_REQUEST = "TIME";
+
     public static void main(String[] args) {
         int listeningPort;
-        DatagramSocket socket = null;
+        DatagramSocket socket;
         DatagramPacket packet;
         String receivedMsg, timeMsg;
         Calendar calendar;
@@ -43,7 +44,6 @@ public class UdpTimeServer {
                 packet.setLength(timeMsg.length());
                 socket.send(packet);
             }
-
         } catch (Exception e) {
             System.out.println("erro lol");
         }
