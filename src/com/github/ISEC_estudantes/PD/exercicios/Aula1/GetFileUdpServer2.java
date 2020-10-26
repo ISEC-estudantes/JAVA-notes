@@ -59,12 +59,9 @@ public class GetFileUdpServer2 {
             socket = new DatagramSocket(listeningPort);
             
             while(true){
-                
-                packet = new DatagramPacket(new byte[MAX_SIZE], MAX_SIZE);                    
+                packet = new DatagramPacket(new byte[MAX_SIZE], MAX_SIZE);
                 socket.receive(packet);
-                    
                 requestedFileName = new String(packet.getData(), 0, packet.getLength()).trim();
-
                 System.out.println("Recebido pedido para \"" + requestedFileName + "\" de " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
 
                 requestedCanonicalFilePath = new File(localDirectory+File.separator+requestedFileName).getCanonicalPath();
@@ -127,7 +124,7 @@ public class GetFileUdpServer2 {
             System.out.println("O porto de escuta deve ser um inteiro positivo:\n\t"+e);
         }catch(SocketException e){
             System.out.println("Ocorreu uma excepcao ao nivel do socket UDP:\n\t"+e);
-        }catch(FileNotFoundException e){   //Subclasse de IOException                 
+        }catch(FileNotFoundException e){   //Subclasse de IOException
             System.out.println("Ocorreu a excepcao {" + e + "} ao tentar abrir o ficheiro " + requestedCanonicalFilePath + "!");              
         }catch(IOException e){
             System.out.println("Ocorreu a excepcao de E/S: \n\t" + e);

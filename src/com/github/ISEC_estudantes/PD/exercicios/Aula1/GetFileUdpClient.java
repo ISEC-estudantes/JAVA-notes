@@ -16,7 +16,6 @@ import java.net.UnknownHostException;
  */
 public class GetFileUdpClient {
 
-   
     public static final int MAX_SIZE = 4000;
     public static final int TIMEOUT = 5; //segundos
 

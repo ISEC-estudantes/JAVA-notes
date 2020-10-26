@@ -12,7 +12,6 @@ public class UdpTimeClient {
 
     public static void main(String[] args) 
     {
-        
         InetAddress serverAddr;
         int serverPort = -1;
         DatagramSocket socket = null;
@@ -25,7 +24,6 @@ public class UdpTimeClient {
         }
 
         try{
-
             serverAddr = InetAddress.getByName(args[0]);
             serverPort = Integer.parseInt(args[1]);   
             
@@ -53,7 +51,9 @@ public class UdpTimeClient {
                 int second = Integer.parseInt(tokens.nextToken().trim());
             
                 System.out.println("Horas: " + hour + " ; Minutos: " + minute + " ; Segundos: " + second);
-            }catch(NumberFormatException e){}
+            }catch(NumberFormatException e) {
+                e.printStackTrace();
+            }
            
             //******************************************************************
             

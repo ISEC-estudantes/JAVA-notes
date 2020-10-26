@@ -5,11 +5,11 @@ import java.net.ServerSocket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ServerTCP {
+public class ServerTimeTCP {
     private final String GET_TIME = "TIME";
     private int serverPort;
 
-    public ServerTCP(int serverPort) {
+    public ServerTimeTCP(int serverPort) {
         this.serverPort = serverPort;
 
     }
@@ -58,14 +58,14 @@ public class ServerTCP {
             serverSocket.close();
 
             //tratamento de erros
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
     public static void main(String[] args) {
-        ServerTCP sSTP = new ServerTCP(6969);
+        ServerTimeTCP sSTP = new ServerTimeTCP(6969);
         sSTP.run();
     }
 
