@@ -1,11 +1,11 @@
-package com.github.ISEC_estudantes.ED.exercicios.aula4;
+package com.github.ISEC_estudantes.ED.exercicios.aula4e5;
 
 import java.util.Iterator;
-import java.util.MissingResourceException;
 import java.util.NoSuchElementException;
 
 public class ItDezReais implements Iterator<Double> {
     protected int posUltimo = -1;
+    protected int modcounter = 0;
     protected DezReais dezReais = null;
     protected final int modificacoes = 0;
 

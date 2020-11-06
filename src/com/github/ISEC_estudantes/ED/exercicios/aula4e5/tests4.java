@@ -1,4 +1,4 @@
-package com.github.ISEC_estudantes.ED.exercicios.aula4;
+package com.github.ISEC_estudantes.ED.exercicios.aula4e5;
 
 public class tests4 {
     public static void main(String[] args) {
@@ -19,4 +19,5 @@ public class tests4 {
 //        }
 
     }
+
 }

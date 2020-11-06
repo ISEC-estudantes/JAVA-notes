@@ -1,14 +1,11 @@
-package com.github.ISEC_estudantes.ED.exercicios.aula4;
-
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+package com.github.ISEC_estudantes.ED.exercicios.aula4e5;
 
 public class DezReais /*implements Iterable<Double>*/{
     protected final int CAPACITY = 10;
     protected Double[] numeros = new Double[CAPACITY];
     protected int size = 0;
+    protected int modcounter = 0;
+
 
 
 
@@ -19,7 +16,7 @@ public class DezReais /*implements Iterable<Double>*/{
             return false;
         }
         numeros[size++] = numero;
-
+        ++modcounter;
         return true;
     }
 
@@ -51,6 +48,10 @@ public class DezReais /*implements Iterable<Double>*/{
                 "numeros=" + elementsToString() +
                 ", size=" + size +
                 '}';
+    }
+
+    public int getModcounter() {
+        return modcounter;
     }
 
 //    @Override

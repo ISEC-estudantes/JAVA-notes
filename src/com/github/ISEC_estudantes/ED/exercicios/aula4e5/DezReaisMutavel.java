@@ -1,6 +1,6 @@
-package com.github.ISEC_estudantes.ED.exercicios.aula4;
+package com.github.ISEC_estudantes.ED.exercicios.aula4e5;
 
-import java.util.NoSuchElementException;
+import java.util.Iterator;
 
 public class DezReaisMutavel extends DezReais {
     DezReaisMutavel(){
@@ -8,7 +8,12 @@ public class DezReaisMutavel extends DezReais {
     }
 
 
+    public ItDezReaisMutavel getIterator(){
+        return new ItDezReaisMutavel(this);
+    }
+
     public void remove(int pos){
+
 //        if (pos > CAPACITY || pos< 0)
 //            throw new NoSuchElementException("You are trying to access an element that does not exist.");
 //        if(pos > size-1 && !(pos == 0 && size() == 1))
@@ -16,5 +21,6 @@ public class DezReaisMutavel extends DezReais {
         while (pos < size-1)
             numeros[pos]= numeros[pos++];
         --size;
+        ++modcounter;
     }
 }
