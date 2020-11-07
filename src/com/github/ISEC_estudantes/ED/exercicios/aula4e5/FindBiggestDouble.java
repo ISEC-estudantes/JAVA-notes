@@ -22,12 +22,11 @@ public class FindBiggestDouble {
 
     public static void test() {
         var array = new ArrayList<Double>();
-
         double d = 1;
         while (d != 11)
             array.add(d++);
-
     }
+
     public static <T extends Comparable<? super T> > T findGeneric(Iterable<T> d){
         var it = d.iterator();
         T m,j;
