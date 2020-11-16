@@ -100,7 +100,7 @@ public class DistributedPiMasterComSerializacao {
         long nIntervals;
 
         List<Socket> workers = new ArrayList<>();
-        ObjectOutputStream outphe t;
+        ObjectOutputStream output;
         ObjectInputStream input;
 
         int i, nWorkers = 0;
@@ -129,7 +129,6 @@ public class DistributedPiMasterComSerializacao {
         try {
 
             for (i = 0; i < nWorkers; ++i) {
-
                 output = new ObjectOutputStream(workers.get(i).getOutputStream()); //Cria um ObjectOutputStream associado ao socket relativo ao worker com indice i
 
                 //Envia-lhe o pedido
