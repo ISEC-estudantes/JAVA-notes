@@ -24,7 +24,7 @@ public class DistributedPiWorkerComSerializacao_v2 implements Runnable
     private ObjectInputStream in;
     private ObjectOutputStream out;
     
-    public DistributedPiWorkerComSerializacao(Socket s)
+    public DistributedPiWorkerComSerializacao_v2(Socket s)
     {
         this.s= s;
         in = null;
@@ -129,7 +129,7 @@ public class DistributedPiWorkerComSerializacao_v2 implements Runnable
                 Class.forName(JDBC_DRIVER);
                 
                 String dbUrl = "jdbc:mysql://" + dbAddress + "/" + dbName;
-                conn = DriverManager.getConnection(dbUrl, user, pass);                
+                conn = DriverManager.getConnection(dbUrl, user, pass);
                 stmt = conn.createStatement();
 
                 createEntryQuery = "INSERT INTO pi_workers VALUES (NULL,'"

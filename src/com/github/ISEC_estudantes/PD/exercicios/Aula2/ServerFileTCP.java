@@ -6,6 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+
+/**
+ *
+ */
 public class ServerFileTCP {
     public static final int MAX_SIZE = 4000;
     public static final String NOT_EXIST_ERROR = "NOT_EXIST_ERROR";

@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 public class UdpTimeClientSerialized {
 
-    public static final int MAX_SIZE = 256;
+    public static final int MAX_SIZE = 5;
     public static final String TIME_REQUEST = "TIME";
     public static final int TIMEOUT = 10; //segundos
 
@@ -34,7 +34,7 @@ public class UdpTimeClientSerialized {
             try {
                 oout = new ObjectOutputStream(bout);
             } catch (IOException e) {
-                System.out.println("line35");
+                System.out.println("line X");
                 e.printStackTrace();
             }
 
