@@ -1,4 +1,4 @@
-/*
+package com.github.ISEC_estudantes.PD.exercicios.Aula7;/*
  * Exemplo de utilizacao do servico com interface remota GetRemoteFileInterface.
  * Assume-se que o servico encontra-se registado sob o nome "servidor-ficheiros-pd".
  */
@@ -9,8 +9,10 @@ import java.rmi.*;
  *
  * @author Jose'
  */
-public class GetRemoteFileClient {
+public class GetRemoteFileClient{
 
+
+    //ARGUMENTOS: localhost 
     public static void main(String[] args) {
             
         String objectUrl;        
@@ -29,16 +31,17 @@ public class GetRemoteFileClient {
         
         if(args.length != 3){
             System.out.print("Deve passar na linha de comando: (1) a localizacao do registry onde se encontra registado ");
-            System.ou.println("o servico com nome \"GetRemoteFile\"; (2) a directoria local ");
+            System.out.println("o servico com nome \"GetRemoteFile\"; (2) a directoria local ");
             System.out.println("onde pretende guardar o ficheiro obtido; e (3) o ficheiro pretendido!");
             return;
         }        
 
-        objectUrl = //...
+        objectUrl = "rmi://"+args[0];
                 
-        localDirectory = //...
-        fileName = //...
-                
+        localDirectory =
+                ;
+        fileName =
+                ;
         if(/*...*/){
             System.out.println("A directoria " + localDirectory + " nao existe!");
             return;
@@ -59,14 +62,14 @@ public class GetRemoteFileClient {
              * Cria o ficheiro local
              */            
             localFilePath = new File(localDirectory.getPath()+File.separator+fileName).getCanonicalPath();
-            localFileOutputStream = /*...*/
+            localFileOutputStream = new FileOutputStream(localFilePath);
             
             System.out.println("Ficheiro " + localFilePath + " criado.");
             
             /*
              * Obtem a referencia remota para o servico com nome "servidor-ficheiros-pd"
              */
-            GetRemoteFileInterface fileService = //...
+            GetRemoteFileInterface fileService = (GetRemoteFileInterface) Naming.lookup(objectUrl);
             
             /*
              * Obtem e guarda localmente os varios blocos do ficheiro pretendido.
@@ -74,7 +77,7 @@ public class GetRemoteFileClient {
              */
             offset = 0;
             
-            while(/*...*/){
+            while((b= fileService.getFileChunk(fileName,offset))!=null){
                 localFileOutputStream.write(b);
                 offset += b.length;
             }
