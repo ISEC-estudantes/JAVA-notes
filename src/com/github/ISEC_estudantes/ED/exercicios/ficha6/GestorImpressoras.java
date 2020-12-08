@@ -56,10 +56,10 @@ public class GestorImpressoras {
         gestor.addPrinter(new Impressora("boorru", "mishmosh", "k47", "kernel-based", "69", 23));
         gestor.addPrinter(new Impressora("xixicoco", "mishmosh", "k47", "kernel-based", "69", 23));
         var n = gestor.getPrinter("Lab2");
-    n.show();
+        n.show();
         System.out.println(gestor.getNomes());
-        gestor.removePrinter("Lab1");
+        gestor.removePrinter("Lab-1");
         System.out.println(gestor.getNomes());
-
     }
+
 }

@@ -30,7 +30,8 @@ public class UdpTimeClient {
             socket = new DatagramSocket();
             socket.setSoTimeout(TIMEOUT*1000);
             
-            packet = new DatagramPacket(TIME_REQUEST.getBytes(), TIME_REQUEST.length(), serverAddr,
+            packet = new DatagramPacket(TIME_REQUEST.getBytes(),
+                    TIME_REQUEST.length(), serverAddr,
                     serverPort);
             
             socket.send(packet);
