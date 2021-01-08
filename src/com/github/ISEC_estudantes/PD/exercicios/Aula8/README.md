@@ -1,0 +1,1 @@
+## Esta aula está num projeto standalone, ir a pasta standalone-projects que está no root deste repositório.

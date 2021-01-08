@@ -5,11 +5,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/rmi" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios/ficha1" />
-      <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios/ficha2" />
-      <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios/ficha3" />
-      <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios/ficha4" />
-      <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios/ficha5" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/testes" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/PD" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/PD/exercicios" />
@@ -18,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/src/pt/isec/ED/exercicios/aula1" />
       <excludeFolder url="file://$MODULE_DIR$/src/pt/isec/PD/exercicios" />
     </content>
+    <content url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
