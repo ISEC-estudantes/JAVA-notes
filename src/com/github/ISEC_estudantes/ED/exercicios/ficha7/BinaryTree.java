@@ -2,7 +2,7 @@ package com.github.ISEC_estudantes.ED.exercicios.ficha7;
 
 import java.util.*;
 
-public class BinaryTree<T extends Comparable<? super T>> {
+public class BinaryTree<T extends Comparable<? super T>> implements Comparable<Node<T>>, Iterable {
     private Node root, nullnode; //nullnode e o no sentinela
     private Comparator<T> comp;
 
@@ -152,9 +152,9 @@ public class BinaryTree<T extends Comparable<? super T>> {
         //cmp == 0 apagar aqui
         if (root.getLeft() == nullnode && root.getRight() == nullnode)
             return nullnode;//nao tem filhos
-        if(root.getLeft() == nullnode)return root.getRight();// so tem filho direito
-        if(root.getRight() == nullnode) return root.getLeft();// so tem filho esquerdo
-        System.out.println("Tem 2 filhos, o"+root.get());//sechegamso aqui tem 2 filhos
+        if (root.getLeft() == nullnode) return root.getRight();// so tem filho direito
+        if (root.getRight() == nullnode) return root.getLeft();// so tem filho esquerdo
+        System.out.println("Tem 2 filhos, o" + root.get());//sechegamso aqui tem 2 filhos
         Node<T> min = minimumElement(root.getRight());//encontrar minimo na subarvore direita para substituir pai
         root.set(min.get());
         root.setRight(remove(root.getRight(), min.get()));
@@ -168,10 +168,90 @@ public class BinaryTree<T extends Comparable<? super T>> {
     }
 
 
+    //metodos da segunda parte da aula
+    public void removeNodosComUmDescendente() {
+        root = removeNodosComUmDescendente(root);
+    }
+
+    private Node<T> removeNodosComUmDescendente(Node<T> n) {
+        if (n == nullnode) return nullnode;
+        if (n.getLeft() == nullnode && n.getRight() == nullnode) return n;//arvore com 0 descendentes
+        if (n.getLeft() != nullnode && n.getRight() != nullnode) {//arvore com 2 descendentes
+            n.setRight(removeNodosComUmDescendente(n.getRight()));
+            n.setLeft(removeNodosComUmDescendente(n.getLeft()));
+            return n;
+        }
+        if (n.getLeft() == nullnode) return removeNodosComUmDescendente(n.getRight()); //só desc direito
+        return removeNodosComUmDescendente(n.getLeft());// só desc esquerdo
+    }
+
+    public void removeFolhas() {
+        root = removeFolhas(root);
+    }
+
+    private Node removeFolhas(Node<T> n) {
+        if (n == nullnode) return nullnode;
+        if (n.getLeft() == nullnode && n.getRight() == nullnode) return nullnode;//arvore com 0 descendentes
+        if (n.getRight() != nullnode)
+            n.setRight(removeFolhas(n.getRight()));
+        if (n.getLeft() != nullnode)
+            n.setLeft(removeFolhas(n.getLeft()));
+        return n;
+    }
+
+    public T sucessor(T valor) {
+        return ((Node<T>) sucessor(root, valor)).get();
+    }
+
+    private Node<T> sucessor(Node<T> n, T valor) {
+        T sucessor, aux;
+        if (n == nullnode) return null;
+        int cmp = valor.compareTo(n.getData());
+        if (cmp < 0) {//se valor < raiz a raiz pode ser, ou sucessor pode estar à esquerda
+            //Se não existir sucessor à esquerda, então é a raiz o sucessor
+            Node<T> sucessorMenor = sucessor(n.getLeft(), valor);
+            if (sucessorMenor == nullnode) return n;
+            else return sucessorMenor;
+        }
+        //if (cmp>=0) -- se valor >= raiz então o sucessor, a existir, encontra-se na sub-àrvore direita
+        return sucessor(n.getRight(), valor);
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BinaryTree<T> that = (BinaryTree<T>) o;
+        if (root.equals(that.root) && nullnode.equals(that.nullnode) && comp.equals(that.comp)) {
+            return equals(this.root, that.root);
+        }
+        return false;
+    }
+
+    private boolean equals(Node<T> n, Node<T> thatN) {
+        if (n.equals(thatN)) return false;
+        if (n.getLeft() != nullnode) {
+            if (!equals(n.getLeft(), thatN.getLeft()))
+                return false;
+        }
+        if (n.getRight() != nullnode) {
+            if (!equals(n.getRight(), thatN.getRight()))
+                return false;
+        }
+        return true;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(root, nullnode, comp);
+    }
+
     public static void main(String[] args) {
         BinaryTree<Integer> it = new BinaryTree<>();
         ArrayList<Integer> al = new ArrayList<>();
-        int i, a, b, len = 1000000, hl;
+        int i, a, b, len = 10000, hl;
         Integer temp;
         Random r = new Random();
         for (i = 0; i < len; ++i)
@@ -188,6 +268,72 @@ public class BinaryTree<T extends Comparable<? super T>> {
         for (Integer integer : al) it.insere(integer);
         System.out.println("A arvore tem " + it.tamanho() + " elementos, em " + it.profundidade() + " niveis.");
         System.out.println("Devia ter estes niveis: " + Math.log(len) / Math.log(2));
+    }
+
+    @Override
+    public int compareTo(Node<T> o) {
+        if (compareTo(root, o))
+            return 0;
+        return 1;
+    }
+
+    boolean compareTo(Node<T> n1, Node<T> n2) {
+        if (n1 == nullnode && n2 == nullnode) return true;//ambas vazias
+        if (n1 == nullnode || n2 == nullnode) return false;//umavazia outra não
+        int cmp = n1.getData().compareTo(n2.get());
+        //Devolve true se valores sào iguais e sub-árvores esq e dir também
+        return cmp == 0 && compareTo(n1.getLeft(), n2.getLeft()) &&
+                compareTo(n1.getRight(), n2.getRight());
+    }
+
+    @Override
+    public Iterator<Node<T>> iterator() {
+        return new Iterator<Node<T>>() {//TreeIterator
+            List<Node> pathToRoot = definePathToRoot();
+
+            private List definePathToRoot() {
+                pathToRoot = new ArrayList<Node>();
+                addPathToMinFrom(root);
+                return pathToRoot;
+            }
+
+
+
+            public void addPathToMinFrom(Node tmp) {
+                while (tmp != null) {
+                    pathToRoot.add(tmp);
+                    tmp = tmp.left;
+                }
+            }
+
+            public void TreeIterator(Node root) {
+                addPathToMinFrom(root);
+            }
+
+            private void advanceIterator() {
+                Node current = pathToRoot.remove(pathToRoot.size() - 1);
+                if (current.right != null) addPathToMinFrom(current.right);
+            }
+
+            ;
+
+            @Override
+            public boolean hasNext() {
+                return pathToRoot.isEmpty();
+            }
+
+            private Node getNext() {
+                return pathToRoot.get(pathToRoot.size() - 1);
+            }
+
+
+            @Override
+            public Node next() {
+                Node ret = getNext();
+                advanceIterator();
+                return ret;
+            }
+        };
     }
 }
 

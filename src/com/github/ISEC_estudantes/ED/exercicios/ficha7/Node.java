@@ -1,5 +1,7 @@
 package com.github.ISEC_estudantes.ED.exercicios.ficha7;
 
+import java.util.Objects;
+
 public class Node<T extends Comparable<? super T>> {
     T data;
     Node<T> left, right;
@@ -23,6 +25,7 @@ public class Node<T extends Comparable<? super T>> {
     public T get() {
         return data;
     }
+    public T getData(){return data;}
 
     public void setLeft(Node<T> left) {
         this.left = left;
@@ -44,5 +47,18 @@ public class Node<T extends Comparable<? super T>> {
 
     public void set(T data) {
         this.data = data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return data.equals(node.data) && left.equals(node.left) && right.equals(node.right);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data, left, right);
     }
 }

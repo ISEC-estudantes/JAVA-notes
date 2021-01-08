@@ -13,7 +13,6 @@
       <excludeFolder url="file://$MODULE_DIR$/src/pt/isec/ED/exercicios/aula1" />
       <excludeFolder url="file://$MODULE_DIR$/src/pt/isec/PD/exercicios" />
     </content>
-    <content url="file://$MODULE_DIR$/src/com/github/ISEC_estudantes/ED/exercicios" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
